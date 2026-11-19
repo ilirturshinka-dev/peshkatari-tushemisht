@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="sq" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Peshkatari "Fisherman" | Tushemisht, Pogradec</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0B2545',
+                        lake: '#134074',
+                        lakeLight: '#1D5696',
+                        sand: '#F4EFE6',
+                        sandDark: '#E6DEC8',
+                        terracotta: '#D97736',
+                        terracottaHover: '#BF6224',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Teksturë e hollë rrjete peshkimi */
+        .bg-fishing-net {
+            background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 0 L48 24 L24 48 L0 24 Z' fill='none' stroke='%23134074' stroke-width='0.75' stroke-opacity='0.11'/%3E%3Ccircle cx='24' cy='0' r='1.5' fill='%23D97736' fill-opacity='0.22'/%3E%3Ccircle cx='48' cy='24' r='1.5' fill='%23D97736' fill-opacity='0.22'/%3E%3Ccircle cx='24' cy='48' r='1.5' fill='%23D97736' fill-opacity='0.22'/%3E%3Ccircle cx='0' cy='24' r='1.5' fill='%23D97736' fill-opacity='0.22'/%3E%3C/svg%3E");
+        }
+
+        .bg-fishing-net-light {
+            background-image: url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0 L56 28 L28 56 L0 28 Z' fill='none' stroke='%23FFFFFF' stroke-width='0.8' stroke-opacity='0.08'/%3E%3Ccircle cx='28' cy='0' r='1.6' fill='%23D97736' fill-opacity='0.35'/%3E%3Ccircle cx='56' cy='28' r='1.6' fill='%23D97736' fill-opacity='0.35'/%3E%3C/svg%3E");
+        }
+
+        /* Animacion i butë notimi për peshqit dekorativë */
+        @keyframes swimSlow {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-6px) translateX(8px) rotate(1.5deg); }
+        }
+        .animate-swim {
+            animation: swimSlow 6s ease-in-out infinite;
+        }
+        .animate-swim-delayed {
+            animation: swimSlow 7.5s ease-in-out 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-sand text-navy font-sans antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- ==================== HEADER / NAVIGIMI ==================== -->
+    <header class="sticky top-0 z-50 bg-navy/95 backdrop-blur-md text-white border-b border-white/10 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo me Peshk & Rrjetë -->
+                <a href="#kreu" class="flex items-center gap-3 group">
+                    <div class="relative w-12 h-12 rounded-2xl bg-lake flex items-center justify-center border border-white/15 shadow-inner overflow-hidden group-hover:border-terracotta transition-colors">
+                        <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 40 40">
+                            <path d="M0 20 L20 0 L40 20 L20 40 Z" fill="none" stroke="#F4EFE6" stroke-width="1"/>
+                            <path d="M10 10 L30 30 M30 10 L10 30" stroke="#F4EFE6" stroke-width="0.7"/>
+                        </svg>
+                        <svg class="w-8 h-8 text-terracotta relative z-10 transform group-hover:scale-105 transition-transform" viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M46 20C38 10 24 8 10 20C24 32 38 30 46 20Z" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M46 20L58 11V29L46 20Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="18" cy="18" r="2" fill="#FFFFFF"/>
+                            <path d="M26 14C28 18 28 22 26 26" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block font-serif text-lg sm:text-xl font-bold tracking-wide leading-tight text-white">
+                            Peshkatari <span class="text-terracotta italic">"Fisherman"</span>
+                        </span>
+                        <span class="block text-[11px] uppercase tracking-[0.2em] text-sand/75" data-i18n="nav_sub">Tushemisht • Pogradec</span>
+                    </div>
+                </a>
+
+                <!-- Lidhjet Desktop -->
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+                    <a href="#rreth-nesh" class="text-sand/90 hover:text-terracotta transition-colors" data-i18n="nav_about">Rreth Nesh</a>
+                    <a href="#menuja" class="text-sand/90 hover:text-terracotta transition-colors" data-i18n="nav_menu">Menuja</a>
+                    <a href="#rezervo" class="text-sand/90 hover:text-terracotta transition-colors" data-i18n="nav_reserve">Rezervo</a>
+                    <a href="#kontakti" class="text-sand/90 hover:text-terracotta transition-colors" data-i18n="nav_contact">Kontakti</a>
+                </nav>
+
+                <!-- Butoni i Gjuhës & Menuja Mobile -->
+                <div class="flex items-center gap-3">
+                    <button id="langToggle" onclick="toggleLanguage()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-lake hover:bg-lakeLight border border-white/15 text-xs sm:text-sm font-semibold text-white transition-all shadow-sm cursor-pointer">
+                        <svg class="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                        <span id="langLabel">EN</span>
+                    </button>
+
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors" aria-label="Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menuja Mobile (Dropdown) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-navy border-t border-white/10 px-4 pt-3 pb-5 space-y-2">
+            <a href="#rreth-nesh" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sand hover:bg-lake transition-colors" data-i18n="nav_about">Rreth Nesh</a>
+            <a href="#menuja" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sand hover:bg-lake transition-colors" data-i18n="nav_menu">Menuja</a>
+            <a href="#rezervo" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sand hover:bg-lake transition-colors" data-i18n="nav_reserve">Rezervo</a>
+            <a href="#kontakti" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-sand hover:bg-lake transition-colors" data-i18n="nav_contact">Kontakti</a>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="kreu" class="relative bg-gradient-to-br from-navy via-lake to-navy text-white overflow-hidden">
+        <div class="absolute inset-0 bg-fishing-net-light pointer-events-none"></div>
+
+        <!-- Dekorime SVG: Silueta peshqish -->
+        <div class="absolute top-14 right-8 sm:right-20 opacity-20 pointer-events-none animate-swim">
+            <svg class="w-36 sm:w-52 h-auto text-sand" viewBox="0 0 120 60" fill="currentColor">
+                <path d="M85 30C68 12 40 10 12 30C40 50 68 48 85 30ZM85 30L112 14V46L85 30Z"/>
+            </svg>
+        </div>
+        <div class="absolute bottom-24 left-6 sm:left-16 opacity-15 pointer-events-none animate-swim-delayed">
+            <svg class="w-28 sm:w-40 h-auto text-terracotta transform scale-x-[-1]" viewBox="0 0 120 60" fill="currentColor">
+                <path d="M85 30C68 12 40 10 12 30C40 50 68 48 85 30ZM85 30L112 14V46L85 30Z"/>
+            </svg>
+        </div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 sm:pt-24 sm:pb-36 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs sm:text-sm text-sand mb-6">
+                <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse"></span>
+                <span data-i18n="hero_badge">Buzë ujit të kristaltë • Tushemisht, Pogradec</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl mx-auto leading-tight mb-6" data-i18n="hero_title">
+                Shija e vërtetë e liqenit në Tushemisht
+            </h1>
+
+            <p class="text-base sm:text-lg lg:text-xl text-sand/85 max-w-2xl mx-auto font-light leading-relaxed mb-10" data-i18n="hero_subtitle">
+                Tradita shekullore e peshkimit me rrjeta në Liqenin e Ohrit, korani i freskët i mëngjesit dhe mikpritja e ngrohtë familjare në zemër të Tushemishtit.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#menuja" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-terracotta hover:bg-terracottaHover text-white font-semibold shadow-lg shadow-terracotta/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <span data-i18n="hero_btn_menu">Shiko Menunë</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </a>
+                <a href="#rezervo" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white border border-white/25 font-semibold backdrop-blur-sm transition-all flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <span data-i18n="hero_btn_reserve">Rezervo Tavolinë</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Vala SVG në fund -->
+        <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+            <svg class="relative block w-full h-12 sm:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,40 C300,110 900,-20 1200,50 L1200,120 L0,120 Z" fill="#F4EFE6"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== RRETH NESH (TRADITA & RRJETAT) ==================== -->
+    <section id="rreth-nesh" class="relative py-16 sm:py-24 bg-sand bg-fishing-net">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Kolona e Majtë -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-3xl bg-navy p-8 sm:p-10 text-white shadow-xl overflow-hidden border border-lake/20">
+                        <div class="absolute inset-0 bg-fishing-net-light opacity-80"></div>
+                        
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-28 h-28 rounded-full bg-lake/80 border-2 border-terracotta/60 flex items-center justify-center mb-6 shadow-inner">
+                                <svg class="w-16 h-16 text-terracotta" viewBox="0 0 80 50" fill="none">
+                                    <path d="M58 25C47 11 29 9 10 25C29 41 47 39 58 25Z" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="2.5"/>
+                                    <path d="M58 25L74 13V37L58 25Z" fill="currentColor"/>
+                                    <circle cx="21" cy="22" r="2.5" fill="#F4EFE6"/>
+                                    <circle cx="34" cy="20" r="1.3" fill="#F4EFE6"/>
+                                    <circle cx="40" cy="24" r="1.3" fill="#F4EFE6"/>
+                                    <circle cx="36" cy="28" r="1.3" fill="#F4EFE6"/>
+                                    <circle cx="45" cy="21" r="1.3" fill="#F4EFE6"/>
+                                </svg>
+                            </div>
+
+                            <h3 class="font-serif text-2xl font-bold text-white mb-2" data-i18n="about_card_title">Nga Rrjeta në Tryezë</h3>
+                            <p class="text-sm text-sand/80 leading-relaxed mb-6" data-i18n="about_card_desc">
+                                Çdo mëngjes herët, varkat e peshkatarëve tanë kthehen nga ujërat e ftohta të Liqenit të Ohrit me peshkun më të freskët të ditës.
+                            </p>
+
+                            <div class="w-full pt-5 border-t border-white/15 flex items-center justify-between text-xs sm:text-sm">
+                                <div class="flex items-center gap-1.5 text-terracotta font-bold">
+                                    <span>★★★★★</span>
+                                    <span class="text-white">4.5 / 5</span>
+                                </div>
+                                <span class="text-sand/70" data-i18n="about_reviews">Vlerësuar nga vizitorët</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolona e Djathtë -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 text-terracotta font-semibold text-sm uppercase tracking-wider">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                        <span data-i18n="about_tag">Tradita Jonë në Tushemisht</span>
+                    </div>
+
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy leading-tight" data-i18n="about_title">
+                        Mikpritje familjare mes burimeve dhe gjelbërimit të Tushemishtit
+                    </h2>
+
+                    <p class="text-navy/80 text-base sm:text-lg leading-relaxed" data-i18n="about_p1">
+                        Në <strong>Restaurant Peshkatari "Fisherman"</strong>, çdo pjatë rrëfen historinë e liqenit. Me një atmosferë të qetë dhe autentike buzë ujit, ne ruajmë recetat tradicionale pogradecare të trashëguara brez pas brezi.
+                    </p>
+
+                    <p class="text-navy/80 text-base leading-relaxed" data-i18n="about_p2">
+                        Nga korani i pjekur me mjeshtëri në zgarrë e deri te tava tradicionale e peshkut dhe perimet e freskëta të fshatit, ne kujdesemi që çdo vizitë të jetë një kujtim i paharrueshëm shijeje dhe qetësie.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="p-4 rounded-2xl bg-white/80 border border-lake/10 shadow-sm">
+                            <div class="text-terracotta font-bold text-lg mb-1" data-i18n="pillar1_t">100% i Freskët</div>
+                            <div class="text-xs text-navy/70" data-i18n="pillar1_d">Peshk i kapur çdo mëngjes nga liqeni</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white/80 border border-lake/10 shadow-sm">
+                            <div class="text-terracotta font-bold text-lg mb-1" data-i18n="pillar2_t">Receta Vendase</div>
+                            <div class="text-xs text-navy/70" data-i18n="pillar2_d">Gatim tradicional me vaj ulliri & erëza</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white/80 border border-lake/10 shadow-sm">
+                            <div class="text-terracotta font-bold text-lg mb-1" data-i18n="pillar3_t">Pamje Qetësuese</div>
+                            <div class="text-xs text-navy/70" data-i18n="pillar3_d">Ambient familjar në zemër të Tushemishtit</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MENUJA KRYESORE (STATIKE DHE E DUKSHME MENJËHERË) ==================== -->
+    <section id="menuja" class="relative py-16 sm:py-24 bg-white border-y border-lake/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Titulli i Menusë -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-terracotta font-semibold text-sm uppercase tracking-wider" data-i18n="menu_tag">Shijet e Liqenit</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy mt-2 mb-4" data-i18n="menu_title">Menuja Jonë e Përzgjedhur</h2>
+                <p class="text-navy/70 text-sm sm:text-base" data-i18n="menu_subtitle">
+                    Specialitetet e peshkut të Liqenit të Ohrit dhe tavat tradicionale, të shoqëruara me përzgjedhje nga sallatat, antipastat, mishi dhe pijet.
+                </p>
+            </div>
+
+            <!-- Filtrat e Kategorive -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+                <button type="button" onclick="filterMenu('all')" data-filter="all" class="menu-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-navy text-white shadow-md cursor-pointer" data-i18n="cat_all">
+                    Të Gjitha
+                </button>
+                <button type="button" onclick="filterMenu('peshk')" data-filter="peshk" class="menu-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-sand text-navy hover:bg-sandDark cursor-pointer" data-i18n="cat_fish">
+                    Peshku & Tava Peshku
+                </button>
+                <button type="button" onclick="filterMenu('sallata')" data-filter="sallata" class="menu-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-sand text-navy hover:bg-sandDark cursor-pointer" data-i18n="cat_salads">
+                    Sallata & Antipasta
+                </button>
+                <button type="button" onclick="filterMenu('mishi')" data-filter="mishi" class="menu-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-sand text-navy hover:bg-sandDark cursor-pointer" data-i18n="cat_meat">
+                    Supa & Mishi
+                </button>
+                <button type="button" onclick="filterMenu('pije')" data-filter="pije" class="menu-filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-sand text-navy hover:bg-sandDark cursor-pointer" data-i18n="cat_drinks">
+                    Pije & Verë
+                </button>
+            </div>
+
+            <!-- Lista e Pjatave (E dukshme direkt në HTML) -->
+            <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <!-- 1. PESHKU (Të gjitha pjatat) -->
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Koran Racion" data-en="Koran Trout Portion">Koran Racion</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1300L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-navy text-white" data-sq="Peshku - Fish" data-en="Fish">Peshku - Fish</span>
+                    <p class="text-sm text-navy/75" data-sq="Racion i freskët Koran i Liqenit të Ohrit i pjekur në zgarrë." data-en="Fresh Lake Ohrid Koran trout portion chargrilled to perfection.">Racion i freskët Koran i Liqenit të Ohrit i pjekur në zgarrë.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Belushkë Racion" data-en="Belushka Fish Portion">Belushkë Racion</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1100L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-navy text-white" data-sq="Peshku - Fish" data-en="Fish">Peshku - Fish</span>
+                    <p class="text-sm text-navy/75" data-sq="Racion i freskët peshku Belushkë nga ujërat e liqenit." data-en="Fresh Belushka trout portion from Lake Ohrid.">Racion i freskët peshku Belushkë nga ujërat e liqenit.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Ngjalë Sesonale (300gr)" data-en="Seasonal Eel (300gr)">Ngjalë Sesonale (300gr)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1500L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-navy text-white" data-sq="Peshku - Fish" data-en="Fish">Peshku - Fish</span>
+                    <p class="text-sm text-navy/75" data-sq="Ngjalë e freskët sezonale e liqenit, racion 300gr." data-en="Fresh seasonal lake eel, 300gr portion.">Ngjalë e freskët sezonale e liqenit, racion 300gr.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Krap Sesonal (350gr)" data-en="Seasonal Carp (350gr)">Krap Sesonal (350gr)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">800L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-navy text-white" data-sq="Peshku - Fish" data-en="Fish">Peshku - Fish</span>
+                    <p class="text-sm text-navy/75" data-sq="Krap i freskët sezonal, racion 350gr." data-en="Fresh seasonal lake carp, 350gr portion.">Krap i freskët sezonal, racion 350gr.</p>
+                </div>
+
+                <!-- 2. TAVA PESHKU (Të gjitha tavat) -->
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Tavë Korani Tradicionale (racion)" data-en="Traditional Koran Fish Casserole">Tavë Korani Tradicionale (racion)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1500L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake text-white" data-sq="Tava Peshku" data-en="Fish Casserole">Tava Peshku</span>
+                    <p class="text-sm text-navy/75" data-sq="Receta tradicionale pogradecare me peshk Koran të freskët." data-en="Traditional Pogradec baked casserole with fresh Koran fish.">Receta tradicionale pogradecare me peshk Koran të freskët.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Tavë Korani Pana dhe Arra (racion)" data-en="Koran Casserole with Cream & Walnuts">Tavë Korani Pana dhe Arra (racion)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1500L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake text-white" data-sq="Tava Peshku" data-en="Fish Casserole">Tava Peshku</span>
+                    <p class="text-sm text-navy/75" data-sq="Koran i pjekur në tavë me pana të freskët dhe arra." data-en="Baked Koran fish casserole with rich cream and walnuts.">Koran i pjekur në tavë me pana të freskët dhe arra.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Tavë Korani me Salcë Limoni (racion)" data-en="Koran Casserole with Lemon Sauce">Tavë Korani me Salcë Limoni (racion)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1500L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake text-white" data-sq="Tava Peshku" data-en="Fish Casserole">Tava Peshku</span>
+                    <p class="text-sm text-navy/75" data-sq="Tavë Korani e shoqëruar me salcë të freskët limoni." data-en="Koran fish casserole served with aromatic lemon sauce.">Tavë Korani e shoqëruar me salcë të freskët limoni.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Tavë Belushke (racion)" data-en="Belushka Fish Casserole">Tavë Belushke (racion)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1200L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake text-white" data-sq="Tava Peshku" data-en="Fish Casserole">Tava Peshku</span>
+                    <p class="text-sm text-navy/75" data-sq="Tavë e pjekur me peshk të freskët Belushkë të liqenit." data-en="Traditional casserole prepared with fresh Belushka fish.">Tavë e pjekur me peshk të freskët Belushkë të liqenit.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Tavë Krapi Tradicionale" data-en="Traditional Carp Casserole">Tavë Krapi Tradicionale</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1000L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake text-white" data-sq="Tava Peshku" data-en="Fish Casserole">Tava Peshku</span>
+                    <p class="text-sm text-navy/75" data-sq="Tavë tradicionale me krap të freskët të liqenit." data-en="Traditional baked casserole with fresh lake carp.">Tavë tradicionale me krap të freskët të liqenit.</p>
+                </div>
+
+                <div data-cat="peshk" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Tavë Ngjale me Hudhra dhe Uthull të Bardhë" data-en="Eel Casserole with Garlic & White Vinegar">Tavë Ngjale me Hudhra dhe Uthull të Bardhë</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1600L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake text-white" data-sq="Tava Peshku" data-en="Fish Casserole">Tava Peshku</span>
+                    <p class="text-sm text-navy/75" data-sq="Specialitet tradicional me ngjalë, hudhra të njoma dhe uthull të bardhë." data-en="Traditional specialty with lake eel, garlic, and white vinegar.">Specialitet tradicional me ngjalë, hudhra të njoma dhe uthull të bardhë.</p>
+                </div>
+
+                <!-- 3. SALLATA & ANTIPASTA (Përzgjedhje) -->
+                <div data-cat="sallata" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Sallatë Fshati / Sallatë Shopska" data-en="Village Salad / Shopska Salad">Sallatë Fshati / Sallatë Shopska</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">350L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-terracotta/15 text-terracotta" data-sq="Sallata - Salads" data-en="Salads">Sallata - Salads</span>
+                    <p class="text-sm text-navy/75" data-sq="Domate, kastravec, ullinj, qepë ose djathë i bardhë i grirë." data-en="Fresh tomatoes, cucumber, olives, onions, or grated white cheese.">Domate, kastravec, ullinj, qepë ose djathë i bardhë i grirë.</p>
+                </div>
+
+                <div data-cat="sallata" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Sallatë me Rukola & Avokado" data-en="Arugula & Avocado Salad">Sallatë me Rukola & Avokado</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">700L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-terracotta/15 text-terracotta" data-sq="Sallata - Salads" data-en="Salads">Sallata - Salads</span>
+                    <p class="text-sm text-navy/75" data-sq="Rukola e freskët e shoqëruar me avokado." data-en="Fresh arugula salad paired with ripe avocado.">Rukola e freskët e shoqëruar me avokado.</p>
+                </div>
+
+                <div data-cat="sallata" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Djathë i Bardhë / Djathë Furre" data-en="White Cheese / Oven Baked Cheese">Djathë i Bardhë / Djathë Furre</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">250L – 300L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-terracotta/15 text-terracotta" data-sq="Antipasta" data-en="Appetizer">Antipasta</span>
+                    <p class="text-sm text-navy/75" data-sq="Djathë i bardhë vendas (250L) ose i pjekur në furrë (300L)." data-en="Local white cheese (250L) or oven-baked cheese (300L).">Djathë i bardhë vendas (250L) ose i pjekur në furrë (300L).</p>
+                </div>
+
+                <div data-cat="sallata" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Kërpudha me Pana" data-en="Mushrooms with Cream">Kërpudha me Pana</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">400L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-terracotta/15 text-terracotta" data-sq="Antipasta" data-en="Appetizer">Antipasta</span>
+                    <p class="text-sm text-navy/75" data-sq="Kërpudha të freskëta të gatuara me pana." data-en="Fresh mushrooms cooked in creamy sauce.">Kërpudha të freskëta të gatuara me pana.</p>
+                </div>
+
+                <!-- 4. SUPA & MISHI (Përzgjedhje) -->
+                <div data-cat="mishi" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Supë Peshku" data-en="Fish Soup">Supë Peshku</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">400L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-navy/10 text-navy" data-sq="Supa - Soups" data-en="Soups">Supa - Soups</span>
+                    <p class="text-sm text-navy/75" data-sq="Supë e ngrohtë me peshk të freskët të liqenit." data-en="Warm traditional soup made with fresh lake fish.">Supë e ngrohtë me peshk të freskët të liqenit.</p>
+                </div>
+
+                <div data-cat="mishi" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Brinjë Qengji / Biftek Viçi" data-en="Lamb Ribs / Beef Steak">Brinjë Qengji / Biftek Viçi</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">1200L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-navy/10 text-navy" data-sq="Mishi - Meat" data-en="Meat">Mishi - Meat</span>
+                    <p class="text-sm text-navy/75" data-sq="Brinjë qengji të njoma ose biftek viçi i pjekur në zgarrë." data-en="Tender lamb ribs or chargrilled beef steak.">Brinjë qengji të njoma ose biftek viçi i pjekur në zgarrë.</p>
+                </div>
+
+                <!-- 5. PIJE & VERË (Përzgjedhje) -->
+                <div data-cat="pije" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Verë e Shtëpisë (1L)" data-en="Home Made Wine (1L)">Verë e Shtëpisë (1L)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">800L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake/15 text-lake" data-sq="Beer & Wine" data-en="Beer & Wine">Beer & Wine</span>
+                    <p class="text-sm text-navy/75" data-sq="Verë vendase e shtëpisë, bokal 1 litër." data-en="Local house-made wine, 1 liter carafe.">Verë vendase e shtëpisë, bokal 1 litër.</p>
+                </div>
+
+                <div data-cat="pije" class="menu-card p-5 sm:p-6 rounded-2xl bg-sand/50 hover:bg-sand border border-lake/10 hover:border-terracotta/40 transition-all shadow-sm">
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-navy" data-sq="Birrë Korça / Elbar (0.5L)" data-en="Korça / Elbar Beer (0.5L)">Birrë Korça / Elbar (0.5L)</h3>
+                        <span class="shrink-0 font-bold text-terracotta bg-white px-3 py-1 rounded-xl text-sm border border-terracotta/20">200L</span>
+                    </div>
+                    <span class="inline-block mb-2 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-lake/15 text-lake" data-sq="Beer & Wine" data-en="Beer & Wine">Beer & Wine</span>
+                    <p class="text-sm text-navy/75" data-sq="Birrë e ftohtë vendase (Heineken 250L)." data-en="Chilled local Albanian beer (Heineken 250L).">Birrë e ftohtë vendase (Heineken 250L).</p>
+                </div>
+
+            </div>
+
+            <!-- Shënim poshtë menusë -->
+            <div class="mt-10 p-4 rounded-2xl bg-sand/70 border border-lake/10 text-center text-xs sm:text-sm text-navy/75" data-i18n="menu_note">
+                Të gjitha çmimet janë në Lekë (L). Menuja e plotë me të gjitha sallatat, antipastat dhe pjatat e tjera gjendet në restorant.
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== REZERVIMI & KONTAKTI ==================== -->
+    <section id="rezervo" class="relative py-16 sm:py-24 bg-sand bg-fishing-net">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                <!-- Kolona e Majtë: Formulari i Rezervimit (WhatsApp) -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-lake/10">
+                    <div class="mb-6">
+                        <span class="text-terracotta font-semibold text-sm uppercase tracking-wider" data-i18n="res_tag">Rezervim i Shpejtë</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy mt-1" data-i18n="res_title">Rezervoni Tavolinën Tuaj</h2>
+                        <p class="text-sm text-navy/70 mt-2" data-i18n="res_subtitle">
+                            Plotësoni të dhënat e mëposhtme dhe mesazhi i rezervimit do të hapet direkt në WhatsApp për konfirmim të menjëhershëm.
+                        </p>
+                    </div>
+
+                    <form id="reservationForm" onsubmit="sendWhatsAppReservation(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-navy/80 mb-1.5" data-i18n="form_name">Emri & Mbiemri *</label>
+                                <input type="text" id="resName" required placeholder="p.sh. Arben Hoxha" class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-lake/15 focus:border-terracotta focus:bg-white focus:outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-navy/80 mb-1.5" data-i18n="form_guests">Numri i Personave *</label>
+                                <select id="resGuests" class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-lake/15 focus:border-terracotta focus:bg-white focus:outline-none text-sm">
+                                    <option value="2">2 Persona</option>
+                                    <option value="3">3 Persona</option>
+                                    <option value="4" selected>4 Persona</option>
+                                    <option value="5">5 Persona</option>
+                                    <option value="6">6 Persona</option>
+                                    <option value="8+">8+ Persona (Grup / Familje)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-navy/80 mb-1.5" data-i18n="form_date">Data *</label>
+                                <input type="date" id="resDate" required class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-lake/15 focus:border-terracotta focus:bg-white focus:outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-navy/80 mb-1.5" data-i18n="form_time">Ora e Preferuar *</label>
+                                <input type="time" id="resTime" required value="13:30" class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-lake/15 focus:border-terracotta focus:bg-white focus:outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-navy/80 mb-1.5" data-i18n="form_notes">Kërkesa të veçanta (opsionale)</label>
+                            <textarea id="resNotes" rows="2" placeholder="p.sh. Tavolinë pranë ujit, porosi paraprake për Koran..." class="w-full px-4 py-3 rounded-xl bg-sand/50 border border-lake/15 focus:border-terracotta focus:bg-white focus:outline-none text-sm"></textarea>
+                        </div>
+
+                        <div id="formStatus" class="hidden p-3 rounded-xl bg-lake/10 text-lake text-xs font-medium"></div>
+
+                        <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold shadow-lg shadow-[#25D366]/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+                            </svg>
+                            <span data-i18n="form_submit">Dërgo Rezervimin në WhatsApp</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Kolona e Djathtë: Orari & Informacioni i Kontaktit -->
+                <div id="kontakti" class="lg:col-span-5 flex flex-col justify-between bg-navy text-white rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-fishing-net-light opacity-60 pointer-events-none"></div>
+                    
+                    <div class="relative z-10 space-y-6">
+                        <div>
+                            <span class="text-terracotta font-semibold text-sm uppercase tracking-wider" data-i18n="contact_tag">Na Gjeni Lehtësisht</span>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold mt-1" data-i18n="contact_title">Informacion & Orari</h3>
+                        </div>
+
+                        <!-- Adresa -->
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-lake flex items-center justify-center shrink-0 border border-white/10 text-terracotta">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-xs uppercase tracking-wider text-sand/60" data-i18n="addr_label">Vendndodhja</div>
+                                <div class="font-medium text-white">Tushemisht, Pogradec, Shqipëri</div>
+                                <a href="https://maps.google.com/?q=Restaurant+Peshkatari+Tushemisht" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-terracotta hover:underline mt-1">
+                                    <span data-i18n="open_maps">Hap në Google Maps</span> →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Telefoni -->
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-lake flex items-center justify-center shrink-0 border border-white/10 text-terracotta">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-xs uppercase tracking-wider text-sand/60" data-i18n="phone_label">Telefoni & WhatsApp</div>
+                                <a href="tel:+355693215417" class="font-bold text-lg text-white hover:text-terracotta transition-colors">069 321 5417</a>
+                                <div class="text-xs text-sand/70" data-i18n="phone_note">Kliko për të telefonuar direkt</div>
+                            </div>
+                        </div>
+
+                        <!-- Orari Javor -->
+                        <div class="pt-4 border-t border-white/15">
+                            <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-sand/60 mb-3">
+                                <svg class="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span data-i18n="hours_label">Orari i Shërbimit</span>
+                            </div>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex justify-between items-center text-sand/90">
+                                    <span data-i18n="days_1">E Hënë, E Martë, E Enjte</span>
+                                    <span class="font-semibold text-white">08:00 – 22:00</span>
+                                </li>
+                                <li class="flex justify-between items-center text-sand/90">
+                                    <span data-i18n="days_2">E Mërkurë, E Premte, E Shtunë</span>
+                                    <span class="font-semibold text-white">08:00 – 23:00</span>
+                                </li>
+                                <li class="flex justify-between items-center text-sand/90">
+                                    <span data-i18n="days_3">E Diel</span>
+                                    <span class="font-semibold text-terracotta">08:00 – 00:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-navy text-sand/80 border-t border-white/10 py-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <div class="font-serif text-lg font-bold text-white">
+                    Restaurant Peshkatari <span class="text-terracotta italic">"Fisherman"</span>
+                </div>
+                <p class="text-xs text-sand/60 mt-1" data-i18n="footer_desc">
+                    Shije autentike e liqenit, peshk i freskët i kapur me rrjeta dhe mikpritje shqiptare në Tushemisht.
+                </p>
+            </div>
+            <div class="text-xs text-sand/60">
+                &copy; <span id="currentYear">2026</span> Restaurant Peshkatari "Fisherman" • <span data-i18n="footer_rights">Të gjitha të drejtat e rezervuara.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        let currentLang = 'sq';
+
+        const translations = {
+            sq: {
+                nav_sub: 'Tushemisht • Pogradec',
+                nav_about: 'Rreth Nesh',
+                nav_menu: 'Menuja',
+                nav_reserve: 'Rezervo',
+                nav_contact: 'Kontakti',
+                hero_badge: 'Buzë ujit të kristaltë • Tushemisht, Pogradec',
+                hero_title: 'Shija e vërtetë e liqenit në Tushemisht',
+                hero_subtitle: 'Tradita shekullore e peshkimit me rrjeta në Liqenin e Ohrit, korani i freskët i mëngjesit dhe mikpritja e ngrohtë familjare në zemër të Tushemishtit.',
+                hero_btn_menu: 'Shiko Menunë',
+                hero_btn_reserve: 'Rezervo Tavolinë',
+                about_card_title: 'Nga Rrjeta në Tryezë',
+                about_card_desc: 'Çdo mëngjes herët, varkat e peshkatarëve tanë kthehen nga ujërat e ftohta të Liqenit të Ohrit me peshkun më të freskët të ditës.',
+                about_reviews: 'Vlerësuar nga vizitorët',
+                about_tag: 'Tradita Jonë në Tushemisht',
+                about_title: 'Mikpritje familjare mes burimeve dhe gjelbërimit të Tushemishtit',
+                about_p1: 'Në Restaurant Peshkatari "Fisherman", çdo pjatë rrëfen historinë e liqenit. Me një atmosferë të qetë dhe autentike buzë ujit, ne ruajmë recetat tradicionale pogradecare të trashëguara brez pas brezi.',
+                about_p2: 'Nga korani i pjekur me mjeshtëri në zgarrë e deri te tava tradicionale e peshkut dhe perimet e freskëta të fshatit, ne kujdesemi që çdo vizitë të jetë një kujtim i paharrueshëm shijeje dhe qetësie.',
+                pillar1_t: '100% i Freskët',
+                pillar1_d: 'Peshk i kapur çdo mëngjes nga liqeni',
+                pillar2_t: 'Receta Vendase',
+                pillar2_d: 'Gatim tradicional me vaj ulliri & erëza',
+                pillar3_t: 'Pamje Qetësuese',
+                pillar3_d: 'Ambient familjar në zemër të Tushemishtit',
+                menu_tag: 'Shijet e Liqenit',
+                menu_title: 'Menuja Jonë e Përzgjedhur',
+                menu_subtitle: 'Specialitetet e peshkut të Liqenit të Ohrit dhe tavat tradicionale, të shoqëruara me përzgjedhje nga sallatat, antipastat, mishi dhe pijet.',
+                cat_all: 'Të Gjitha',
+                cat_fish: 'Peshku & Tava Peshku',
+                cat_salads: 'Sallata & Antipasta',
+                cat_meat: 'Supa & Mishi',
+                cat_drinks: 'Pije & Verë',
+                menu_note: 'Të gjitha çmimet janë në Lekë (L). Menuja e plotë me të gjitha sallatat, antipastat dhe pjatat e tjera gjendet në restorant.',
+                res_tag: 'Rezervim i Shpejtë',
+                res_title: 'Rezervoni Tavolinën Tuaj',
+                res_subtitle: 'Plotësoni të dhënat e mëposhtme dhe mesazhi i rezervimit do të hapet direkt në WhatsApp për konfirmim të menjëhershëm.',
+                form_name: 'Emri & Mbiemri *',
+                form_guests: 'Numri i Personave *',
+                form_date: 'Data *',
+                form_time: 'Ora e Preferuar *',
+                form_notes: 'Kërkesa të veçanta (opsionale)',
+                form_submit: 'Dërgo Rezervimin në WhatsApp',
+                contact_tag: 'Na Gjeni Lehtësisht',
+                contact_title: 'Informacion & Orari',
+                addr_label: 'Vendndodhja',
+                open_maps: 'Hap në Google Maps',
+                phone_label: 'Telefoni & WhatsApp',
+                phone_note: 'Kliko për të telefonuar direkt',
+                hours_label: 'Orari i Shërbimit',
+                days_1: 'E Hënë, E Martë, E Enjte',
+                days_2: 'E Mërkurë, E Premte, E Shtunë',
+                days_3: 'E Diel',
+                footer_desc: 'Shije autentike e liqenit, peshk i freskët i kapur me rrjeta dhe mikpritje shqiptare në Tushemisht.',
+                footer_rights: 'Të gjitha të drejtat e rezervuara.'
+            },
+            en: {
+                nav_sub: 'Tushemisht • Pogradec',
+                nav_about: 'About Us',
+                nav_menu: 'Menu',
+                nav_reserve: 'Book a Table',
+                nav_contact: 'Contact',
+                hero_badge: 'By the crystal waters • Tushemisht, Pogradec',
+                hero_title: 'The True Taste of the Lake in Tushemisht',
+                hero_subtitle: 'Centuries-old net fishing tradition on Lake Ohrid, fresh morning Koran trout, and warm family hospitality in the heart of Tushemisht.',
+                hero_btn_menu: 'Explore Menu',
+                hero_btn_reserve: 'Book a Table',
+                about_card_title: 'From Net to Table',
+                about_card_desc: 'Every early morning, our fishermen’s boats return from the crisp waters of Lake Ohrid with the freshest catch of the day.',
+                about_reviews: 'Rated by guests',
+                about_tag: 'Our Tradition in Tushemisht',
+                about_title: 'Family hospitality surrounded by springs and greenery',
+                about_p1: 'At Restaurant Peshkatari "Fisherman", every dish tells the story of the lake. With a peaceful lakeside atmosphere, we preserve traditional Pogradec recipes passed down through generations.',
+                about_p2: 'From expertly chargrilled Koran trout to traditional baked fish casseroles and fresh village produce, we ensure every visit is an unforgettable memory of flavor and tranquility.',
+                pillar1_t: '100% Fresh Catch',
+                pillar1_d: 'Fish caught every morning from the lake',
+                pillar2_t: 'Local Recipes',
+                pillar2_d: 'Traditional cooking with olive oil & herbs',
+                pillar3_t: 'Serene Views',
+                pillar3_d: 'Family atmosphere in the heart of Tushemisht',
+                menu_tag: 'Tastes of the Lake',
+                menu_title: 'Our Selected Menu',
+                menu_subtitle: 'Fresh Lake Ohrid fish specialties and traditional casseroles, accompanied by a curated selection of salads, appetizers, meats, and drinks.',
+                cat_all: 'All Items',
+                cat_fish: 'Fish & Fish Casserole',
+                cat_salads: 'Salads & Appetizers',
+                cat_meat: 'Soups & Meat',
+                cat_drinks: 'Beer & Wine',
+                menu_note: 'All prices are in Albanian Lek (L). Full menu with all additional salads and dishes is available at the restaurant.',
+                res_tag: 'Quick Reservation',
+                res_title: 'Reserve Your Table',
+                res_subtitle: 'Fill in the details below and your reservation message will open directly in WhatsApp for instant confirmation.',
+                form_name: 'Full Name *',
+                form_guests: 'Number of Guests *',
+                form_date: 'Date *',
+                form_time: 'Preferred Time *',
+                form_notes: 'Special requests (optional)',
+                form_submit: 'Send Reservation via WhatsApp',
+                contact_tag: 'Find Us Easily',
+                contact_title: 'Info & Opening Hours',
+                addr_label: 'Location',
+                open_maps: 'Open in Google Maps',
+                phone_label: 'Phone & WhatsApp',
+                phone_note: 'Tap to call directly',
+                hours_label: 'Opening Hours',
+                days_1: 'Monday, Tuesday, Thursday',
+                days_2: 'Wednesday, Friday, Saturday',
+                days_3: 'Sunday',
+                footer_desc: 'Authentic taste of the lake, fresh net-caught fish, and Albanian hospitality in Tushemisht.',
+                footer_rights: 'All rights reserved.'
+            }
+        };
+
+        // Filtrimi i thjeshtë i kartave të menusë
+        function filterMenu(category) {
+            document.querySelectorAll('.menu-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.remove('bg-sand', 'text-navy', 'hover:bg-sandDark');
+                    btn.classList.add('bg-navy', 'text-white', 'shadow-md');
+                } else {
+                    btn.classList.remove('bg-navy', 'text-white', 'shadow-md');
+                    btn.classList.add('bg-sand', 'text-navy', 'hover:bg-sandDark');
+                }
+            });
+
+            document.querySelectorAll('.menu-card').forEach(card => {
+                if (category === 'all' || card.dataset.cat === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Ndryshimi i gjuhës (SQ <-> EN)
+        function toggleLanguage() {
+            currentLang = currentLang === 'sq' ? 'en' : 'sq';
+            document.getElementById('langLabel').textContent = currentLang === 'sq' ? 'EN' : 'SQ';
+            document.documentElement.lang = currentLang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-sq]').forEach(el => {
+                el.textContent = el.getAttribute(currentLang === 'sq' ? 'data-sq' : 'data-en');
+            });
+        }
+
+        // Menuja në celular
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        // Rezervimi në WhatsApp
+        function sendWhatsAppReservation(e) {
+            e.preventDefault();
+            const name = document.getElementById('resName').value.trim();
+            const guests = document.getElementById('resGuests').value;
+            const date = document.getElementById('resDate').value;
+            const time = document.getElementById('resTime').value;
+            const notes = document.getElementById('resNotes').value.trim();
+
+            if (!name || !date || !time) return;
+
+            const phoneNumber = '355693215417';
+            const message = currentLang === 'sq'
+                ? `Përshëndetje Restaurant Peshkatari "Fisherman"!%0ADëshiroj të bëj një rezervim:%0A• Emri: ${encodeURIComponent(name)}%0A• Persona: ${encodeURIComponent(guests)}%0A• Data: ${encodeURIComponent(date)}%0A• Ora: ${encodeURIComponent(time)}${notes ? `%0A• Shënim: ${encodeURIComponent(notes)}` : ''}`
+                : `Hello Restaurant Peshkatari "Fisherman"!%0AI would like to make a reservation:%0A• Name: ${encodeURIComponent(name)}%0A• Guests: ${encodeURIComponent(guests)}%0A• Date: ${encodeURIComponent(date)}%0A• Time: ${encodeURIComponent(time)}${notes ? `%0A• Notes: ${encodeURIComponent(notes)}` : ''}`;
+
+            const statusBox = document.getElementById('formStatus');
+            statusBox.textContent = currentLang === 'sq'
+                ? 'Po hapet WhatsApp për të dërguar rezervimin tuaj...'
+                : 'Opening WhatsApp to send your reservation...';
+            statusBox.classList.remove('hidden');
+
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank', 'noopener,noreferrer');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('resDate');
+            if (dateInput) {
+                dateInput.min = today;
+                dateInput.value = today;
+            }
+        });
+    </script>
+</body>
+</html>
